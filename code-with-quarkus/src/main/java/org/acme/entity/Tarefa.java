@@ -1,25 +1,25 @@
 package org.acme.entity;
 
-import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import io.quarkus.hibernate.orm.panache.PanacheEntity;
+
 
 @Entity
-public class Tarefa {
+public class Tarefa{
 	
 	@Id
 	@GeneratedValue
 	private Long id;
 	private String titulo;
 	private String descrição;
-	private Date dtInicio;
+	private String dtInicio;
 	private String prazo;
 	private String status;
 	
-	public Tarefa(String titulo, String descrição, Date dtInicio, String prazo, String status) {
+	public Tarefa(String titulo, String descrição, String dtInicio, String prazo, String status) {
 		this.titulo = titulo;
 		this.descrição = descrição;
 		this.dtInicio = dtInicio;
@@ -56,11 +56,11 @@ public class Tarefa {
 		this.descrição = descrição;
 	}
 
-	public Date getDtInicio() {
+	public String getDtInicio() {
 		return dtInicio;
 	}
 
-	public void setDtInicio(Date dtInicio) {
+	public void setDtInicio(String dtInicio) {
 		this.dtInicio = dtInicio;
 	}
 
