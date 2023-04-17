@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+import javax.validation.Valid;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -33,11 +35,30 @@ public class TarefaControl {
 		return tarefas;
 	}
 	
+	@GET
+	@Path("/status")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Tarefa>getStatus(String status){
+		List<Tarefa> tarefas = new ArrayList<>();	
+		try {
+			tarefas = service.tasksStatus(status);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return tarefas;
+	}
 	
 	@POST
 	@Transactional
 	@Produces(MediaType.APPLICATION_JSON)
-	public void add(Tarefa tarefa){
+	public void add(@Valid Tarefa tarefa){
 		service.add(tarefa);
+	}
+	
+	@DELETE
+	public void deleteById(Long id){
+		service.deleteWhitId(id);
+		
 	}
 }

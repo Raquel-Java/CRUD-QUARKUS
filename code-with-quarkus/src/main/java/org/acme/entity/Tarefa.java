@@ -3,8 +3,7 @@ package org.acme.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
-import io.quarkus.hibernate.orm.panache.PanacheEntity;
+import javax.validation.constraints.*;
 
 
 @Entity
@@ -13,10 +12,15 @@ public class Tarefa{
 	@Id
 	@GeneratedValue
 	private Long id;
+	
+	@NotBlank(message="Titulo não pode ser vazio")
 	private String titulo;
+	@NotBlank(message="Descrição não pode ser vazio")
 	private String descrição;
+	@NotBlank(message="Status não pode ser vazio")
 	private String dtInicio;
 	private String prazo;
+	@NotBlank(message="Status não pode ser vazio")
 	private String status;
 	
 	public Tarefa(String titulo, String descrição, String dtInicio, String prazo, String status) {
